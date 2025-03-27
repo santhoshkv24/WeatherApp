@@ -1,3 +1,4 @@
+// Event Listener
 document.addEventListener('DOMContentLoaded', function() {
 
     const cityInput = document.getElementById('city-input');
@@ -31,13 +32,14 @@ document.addEventListener('DOMContentLoaded', function() {
         
         try {
             const apiUrl = `http://api.weatherapi.com/v1/current.json?key=0500829439084b558e0112645231705&q=${city}&aqi=yes`;
-            
+            // API_KEY TO BE REPLACED
             const response = await fetch(apiUrl);
             const data = await response.json();
             
             if (data.cod === '404') {
                 throw new Error('City not found');
             }
+            // Error Handling
             
             cityName.textContent = `${data.location.name}, ${data.location.country}`;
             weatherIcon.src = `https:${data.current.condition.icon}`;
